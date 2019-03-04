@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Physic!</title>
+        <meta name="viewport" content="width=device-width" initial-scale="1.0">
+    </head>
+
+    <body>
+        <h1><strong>The Physic Game</strong></h1>
+
+        <div id="game">
+            <p>Press a letter to make your first guess!</p>
+        </div>
+    
+
+
+        <script type = "text/javascript">
+
+            var options = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]; 
+            let win = 0;
+            let lose = 0;
+            let guessesLeft = 9; 
+            let guessesSoFar = [];
+
+            document.onkeyup = function(){
+
+                //Resets game
+                if (guessesLeft === 0){
+                    lose++;
+                    guessesLeft = 9;
+                    guessesSoFar = []
+                }
+
+                var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+
+                console.log(userGuess); 
+
+                var computerGuess = options[Math.floor(Math.random()*options.length)];
+
+                console.log(computerGuess);
+
+                //Left alerts in as options for when you win or lose, but commented them out for now.
+                if (userGuess === "a" || userGuess === "b" || userGuess === "c" || userGuess === "d" ||
+                    userGuess === "e" || userGuess === "f" || userGuess === "g" || userGuess === "h" ||
+                    userGuess === "i" || userGuess === "j" || userGuess === "k" || userGuess === "l" ||
+                    userGuess === "m" || userGuess === "n" || userGuess === "o" || userGuess === "p" ||
+                    userGuess === "q" || userGuess === "r" || userGuess === "s" || userGuess === "t" ||
+                    userGuess === "u" || userGuess === "v" || userGuess === "w" || userGuess === "x" ||
+                    userGuess === "y" || userGuess === "z") {
+                        if (userGuess === computerGuess){
+                            win++;
+                            //alert("Win");
+                            } else {
+                                guessesLeft--;
+                                //alert("Lose");
+                                guessesSoFar.push(userGuess)
+                            }
+                        }
+                    
+                    
+            var html = "<p>wins: " + win + "</p>" + 
+            "<p>losses: " + lose + "</p>" +
+            "<p>guesses left: " + guessesLeft + "</p>" +
+            "<p>your guesses so far: " + guessesSoFar + "</p>"
+        
+            document.querySelector('#game').innerHTML = html;
+            }
+        
+        
+    //Refer to question-game-solved.html
+    // if (questionIndex <= (questions.length - 1)) {
+    //     document.querySelector("#question").innerHTML = questions[questionIndex].q;
+    //   }
+        </script>
+
+    
+
+    </body>
+
+</html>
