@@ -25,10 +25,11 @@
             document.onkeyup = function(){
 
                 //Resets game
-                if (guessesLeft === 0){
+                if (guessesLeft === 1){
                     lose++;
                     guessesLeft = 9;
                     guessesSoFar = []
+                    alert("Lose. Hit any letter to start first guess of next round.")
                 }
 
                 var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
@@ -49,7 +50,9 @@
                     userGuess === "y" || userGuess === "z") {
                         if (userGuess === computerGuess){
                             win++;
-                            //alert("Win");
+                            alert("Win");
+                            guessesLeft = 9;
+                            guessesSoFar = [];
                             } else {
                                 guessesLeft--;
                                 //alert("Lose");
